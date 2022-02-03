@@ -61,7 +61,7 @@ async def play(_, message: Message):
     url = get_url(message)
     if audio:
         mystic = await message.reply_text(
-            "🔄 Processing Audio... Please Wait!"
+            "♲ Processing Audio... Please Wait!"
         )
         try:
             read = db_mem[message.chat.id]["live_check"]
@@ -122,7 +122,7 @@ async def play(_, message: Message):
                     "Sorry! Bot only allows limited number of video calls due to CPU overload issues. Many other chats are using video call right now. Try switching to audio or try again later"
                 )
         mystic = await message.reply_text(
-            "🔄 Processing Video... Please Wait!"
+            "♲ Processing Video... Please Wait!"
         )
         try:
             read = db_mem[message.chat.id]["live_check"]
@@ -142,7 +142,7 @@ async def play(_, message: Message):
             mystic,
         )
     elif url:
-        mystic = await message.reply_text("🔄 Processing URL... Please Wait!")
+        mystic = await message.reply_text("♲ Processing URL... Please Wait!")
         if not message.reply_to_message:
             query = message.text.split(None, 1)[1]
         else:
