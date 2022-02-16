@@ -51,7 +51,7 @@ async def bot_sys_stats():
     return stats
 
 
-@app.on_message(filters.command("stats") & ~filters.edited)
+@app.on_message(filters.command("vcstats") & ~filters.edited)
 async def gstats(_, message):
     start = datetime.now()
     try:
@@ -81,7 +81,7 @@ Ping: `⚡{resp} ms`
 )
 async def stats_markup(_, CallbackQuery):
     command = CallbackQuery.matches[0].group(1)
-    if command == "sys_stats":
+    if command == "sys_vcstats":
         await CallbackQuery.answer("Getting System Stats...", show_alert=True)
         sc = platform.system()
         arch = platform.machine()
@@ -144,7 +144,7 @@ async def stats_markup(_, CallbackQuery):
 **Storage Used:** {used[:4]} GiB
 **Storage Left:** {free[:4]} GiB"""
         await CallbackQuery.edit_message_text(smex, reply_markup=stats3)
-    if command == "bot_stats":
+    if command == "bot_vcstats":
         await CallbackQuery.answer("Getting Bot Stats...", show_alert=True)
         served_chats = []
         chats = await get_served_chats()
@@ -212,7 +212,7 @@ async def stats_markup(_, CallbackQuery):
 **Keys:** {objects}
 **Total Queries:** `{query}`"""
         await CallbackQuery.edit_message_text(smex, reply_markup=stats5)
-    if command == "gen_stats":
+    if command == "gen_vcstats":
         start = datetime.now()
         uptime = await bot_sys_stats()
         await CallbackQuery.answer(
@@ -226,9 +226,9 @@ async def stats_markup(_, CallbackQuery):
 **Ping:** `⚡{resp} ms`
 {uptime}"""
         await CallbackQuery.edit_message_text(smex, reply_markup=stats1)
-    if command == "wait_stats":
+    if command == "wait_vcstats":
         await CallbackQuery.answer()
-    if command == "assis_stats":
+    if command == "assis_vcstats":
         await CallbackQuery.answer(
             "Getting Assistant Stats...", show_alert=True
         )
